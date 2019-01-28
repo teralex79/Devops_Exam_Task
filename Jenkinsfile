@@ -4,17 +4,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'teralex_Building..'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'teralex_Testing..'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'teralex_Deploying....'
             }
         }
     }
