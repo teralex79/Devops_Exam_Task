@@ -10,6 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'teralex_Testing..'
+                sh 'python --version"
             }
         }
         stage('Deploy') {
