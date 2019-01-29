@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo 'teralex_Testing..'
                 sh 'python --version'
-                sh 'wheris python3'
+//                sh 'wheris python3'
                 sh 'pwd'
                 sh 'ls -lah' 
             }
