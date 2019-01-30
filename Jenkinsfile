@@ -12,8 +12,8 @@ pipeline {
                 sh 'pip install --user -e .[test]'
                 sh 'echo $PATH'
                 sh 'ls -lah /home/jenkins/.local/bin'
-                sh 'coverage run -m pytest'
-                sh 'coverage report'
+                sh '/home/jenkins/.local/bin/coverage run -m pytest'
+                sh '/home/jenkins/.local/bin/coverage report'
             }
         }
     }
