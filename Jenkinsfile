@@ -5,6 +5,12 @@ pipeline {
         PATH="/usr/local/bin:/usr/local/sbin:/home/jenkins/.local/bin:$PATH"
     }
 
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+
+        checkout scm
+    }
+
     stages {
         stage('Py-tests') {
             steps {
