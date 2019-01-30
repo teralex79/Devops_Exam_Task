@@ -14,10 +14,10 @@ pipeline {
                 sh 'coverage report'
             }
         }
-        stage('Build') {
+        stage('Build image') {
             steps {
                 echo 'teralex_Building..'
-                app = docker.build("teralex79/devops_exam")
+                app = docker.build('teralex79/devops_exam')
             }
         }
     }
