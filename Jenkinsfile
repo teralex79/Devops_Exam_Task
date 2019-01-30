@@ -17,11 +17,11 @@ pipeline {
         stage('Build image') {
             steps {
                 echo 'teralex_Building..'
-                sh 'hostname'
-                sh 'echo $PATH'
-                //sh 'docker build -t teralex79/devops_exam:web_py-2.${env.BUILD_ID}'
                 script {
                     def myImage = docker.build("teralex79/devops_exam:web_py-2.${env.BUILD_ID}")
+                    myImage.inside {
+                      echo 'Build finished'
+                    }                
                 }
             }
         }
