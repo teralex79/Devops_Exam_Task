@@ -25,7 +25,6 @@ pipeline {
                 echo 'teralex_Building..'
                 script {
                     def myImage = docker.build("teralex79/devops_exam:web_py-2.${env.BUILD_ID}")
-                    myImage.push() 
                 }
             }
         }
