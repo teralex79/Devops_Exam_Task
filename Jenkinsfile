@@ -6,8 +6,7 @@ pipeline {
             steps {
                 echo 'teralex_Testing..'
                 sh 'pip install --user -e .[test]'
-                sh 'PATH=~/.local/bin:$PATH'
-                sh 'export PATH'
+                sh 'export PATH=~/.local/bin:$PATH'
                 sh 'echo $PATH'
                 sh 'ls -lah ~/.local/bin'
                 sh 'coverage run -m pytest'
