@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone repository') {
-            /* Let's make sure we have the repository cloned to our workspace */ 
-            steps {
-                checkout scm
-            } 
-        }   
         stage('Py-tests') {
             steps {
                 echo 'teralex_Testing..'
@@ -28,5 +22,21 @@ pipeline {
                 }
             }
         }
+
+        stage('Publish') {
+            steps {
+                echo 'teralex_Publishing....'
+
+                /* Using credentials with the ID 'dockerhub' from the Jenkins installation */
+                withCredentials([[$class: 'UsernamePasswordMultiBinding',
+                                    credentialsId: '1eb34a30-8255-445a-ac78-40fc605d39e7',
+                                passwordVariable: 'DOCKERHUB_TOKEN',
+                                usernameVariable: 'DOCKERHUB_USERNAME']]) {
+                    /* Our variables be exposed in the environment and we must log in before trying to publish to Dockerhub */
+                        sh 'echo $PASSWORD'
+                        echo "${env.USERNAME}"
+                    //    sh 'docker login --username=${DOCKERHUB_USERNAME} --email=tyler@monkeypox.org --password=${DOCKERHUB_TOKEN}'
+            }
+
     }
 }
