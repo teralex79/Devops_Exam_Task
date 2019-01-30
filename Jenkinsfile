@@ -17,6 +17,7 @@ pipeline {
         stage('Build image') {
             steps {
                 echo 'teralex_Building..'
+                sh 'docker --version'
                 script {
                     def myImage = docker.build("teralex79/devops_exam:web_py-2.${env.BUILD_ID}")
                 }
