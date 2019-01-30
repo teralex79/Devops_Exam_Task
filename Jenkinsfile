@@ -27,15 +27,10 @@ pipeline {
             steps {
                 echo 'teralex_Publishing....'
 
-                /* Using credentials with the ID 'dockerhub' from the Jenkins installation */
-                withCredentials([[$class: 'UsernamePasswordMultiBinding',
-                                    credentialsId: '1eb34a30-8255-445a-ac78-40fc605d39e7',
-                                passwordVariable: 'DOCKERHUB_TOKEN',
-                                usernameVariable: 'DOCKERHUB_USERNAME']]) {
-                    /* Our variables be exposed in the environment and we must log in before trying to publish to Dockerhub */
+                withCredentials([usernamePassword(credentialsId: '1eb34a30-8255-445a-ac78-40fc605d39e7', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh 'echo $PASSWORD'
                         echo "${env.USERNAME}"
-                    //    sh 'docker login --username=${DOCKERHUB_USERNAME} --email=tyler@monkeypox.org --password=${DOCKERHUB_TOKEN}'
+                    //    sh 'docker login --username=${USERNAME} --email=teralex79@gmail.com --password=${PASSWORD}'
                 }
             }
         }
