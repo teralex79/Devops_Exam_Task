@@ -8,6 +8,7 @@ pipeline {
                 sh 'pip install --user -e .[test]'
                 sh 'PATH=~/.local/bin:$PATH'
                 sh 'export PATH'
+                sh 'echo $PATH'
                 sh 'ls -lah ~/.local/bin'
                 sh 'coverage run -m pytest'
                 sh 'coverage report'
