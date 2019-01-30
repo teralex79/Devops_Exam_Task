@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        PATH = " ~/.local/bin:$PATH"
+        PATH = " /home/jenkins/.local/bin:$PATH"
     }
 
     stages {
