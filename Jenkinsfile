@@ -1,5 +1,4 @@
 pipeline {
-    def app
     agent any
     
     environment {
@@ -18,7 +17,7 @@ pipeline {
         stage('Build image') {
             steps {
                 echo 'teralex_Building..'
-                app = docker.build('teralex79/devops_exam')
+                def my_image = docker.build("teralex79/devops_exam:${env.BUILD_ID}")
             }
         }
     }
