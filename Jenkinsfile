@@ -36,6 +36,7 @@ pipeline {
                         sh 'echo $PASSWORD'
                         echo "${env.USERNAME}"
                     //    sh 'docker login --username=${DOCKERHUB_USERNAME} --email=tyler@monkeypox.org --password=${DOCKERHUB_TOKEN}'
+                }
             }
         }
     }
