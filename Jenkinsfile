@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Test') {
+        stage('Py-tests') {
             steps {
                 echo 'teralex_Testing..'
                 sh 'pip install --user -e .[test]'
