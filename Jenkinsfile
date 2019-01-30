@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        PATH = " /home/jenkins/.local/bin:$PATH"
+        PATH="/home/jenkins/.local/bin:$PATH"
     }
 
     stages {
@@ -12,7 +12,7 @@ pipeline {
                 sh 'pip install --user -e .[test]'
                 sh 'echo $PATH'
                 sh 'ls -lah /home/jenkins/.local/bin'
-                sh '/home/jenkins/.local/bin/coverage run -m pytest'
+                sh 'coverage run -m pytest'
                 sh '/home/jenkins/.local/bin/coverage report'
             }
         }
