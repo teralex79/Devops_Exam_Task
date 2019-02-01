@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    def myImage
     
     environment {
         PATH="/usr/local/bin:/usr/local/sbin:/home/jenkins/.local/bin:$PATH"
@@ -20,7 +19,7 @@ pipeline {
             steps {
                 echo 'teralex_Building..'
                 script {
-                    myImage = docker.build("${env.DockerHub_regestry}")
+                    def myImage = docker.build("${env.DockerHub_regestry}")
                 }
             }
         }
