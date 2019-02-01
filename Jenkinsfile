@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    def myImage
     
     environment {
         PATH="/usr/local/bin:/usr/local/sbin:/home/jenkins/.local/bin:$PATH"
@@ -19,7 +20,7 @@ pipeline {
             steps {
                 echo 'teralex_Building..'
                 script {
-                    def myImage = docker.build("${env.DockerHub_regestry}:web_py-2.${env.BUILD_ID}")
+                    myImage = docker.build("${env.DockerHub_regestry}")
                 }
             }
         }
@@ -32,7 +33,11 @@ pipeline {
                         sh 'echo $PASSWORD'
                         echo "${env.USERNAME}"
                         sh 'docker login --username=${USERNAME} --password=${PASSWORD}'
-                        sh 'docker push ${DockerHub_regestry}:web_py-2.${BUILD_ID}'
+#                        sh 'docker push ${DockerHub_regestry}:web_py-2.${BUILD_ID}'
+                        script {
+                            myImage.push("web_py-2.${env.BUILD_ID}")    
+                            myImage.push("latest") 
+                        }
                 }
             }
         }
