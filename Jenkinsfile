@@ -4,7 +4,7 @@ pipeline {
     environment {
         PATH="/usr/local/bin:/usr/local/sbin:/home/jenkins/.local/bin:$PATH"
         DockerHub_regestry = 'teralex79/devops_exam'
-        DockerHub_Credential = '1eb34a30-8255-445a-ac78-40fc605d39e7'
+        DockerHub_Credential_id = 'dockerhub'
         myImage = ''
     }
 
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 echo 'teralex_Publishing....'
                 script {
-                    docker.withRegistry( '', DockerHub_Credential ) {
+                    docker.withRegistry( '', DockerHub_Credential_id ) {
                        myImage.push("web_py-2.${BUILD_NUMBER}")
                       // myImage.push("latest")
                     }
