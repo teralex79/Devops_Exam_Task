@@ -33,7 +33,7 @@ pipeline {
                         sh 'echo $PASSWORD'
                         echo "${env.USERNAME}"
                         sh 'docker login --username=${USERNAME} --password=${PASSWORD}'
-#                        sh 'docker push ${DockerHub_regestry}:web_py-2.${BUILD_ID}'
+                       // sh 'docker push ${DockerHub_regestry}:web_py-2.${BUILD_ID}'
                         script {
                             myImage.push("web_py-2.${env.BUILD_ID}")    
                             myImage.push("latest") 
