@@ -4,6 +4,8 @@ pipeline {
     environment {
         PATH="/usr/local/bin:/usr/local/sbin:/home/jenkins/.local/bin:$PATH"
         DockerHub_regestry = 'teralex79/devops_exam'
+        DockerHub_Credential = '1eb34a30-8255-445a-ac78-40fc605d39e7'
+        myImage = ''
     }
 
     stages {
@@ -19,7 +21,7 @@ pipeline {
             steps {
                 echo 'teralex_Building..'
                 script {
-                    def myImage = docker.build("${env.DockerHub_regestry}")
+                    myImage = docker.build("${env.DockerHub_regestry}")
                 }
             }
         }
@@ -28,15 +30,13 @@ pipeline {
             steps {
                 echo 'teralex_Publishing....'
 
-                withCredentials([usernamePassword(credentialsId: '1eb34a30-8255-445a-ac78-40fc605d39e7', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        sh 'echo $PASSWORD'
-                        echo "${env.USERNAME}"
-                        sh 'docker login --username=${USERNAME} --password=${PASSWORD}'
-                       // sh 'docker push ${DockerHub_regestry}:web_py-2.${BUILD_ID}'
-                        script {
-                            myImage.push("web_py-2.${env.BUILD_ID}")    
-                            myImage.push("latest") 
-                        }
+                script {
+
+                    docker.withRegistry( '', DockerHub_Credential ) {
+
+                       myImage.push("web_py-2.$BUILD_NUMBER")
+                       myImage.push("latest")
+                    }
                 }
             }
         }
