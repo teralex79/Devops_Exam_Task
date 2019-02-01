@@ -39,8 +39,8 @@ pipeline {
         }
 
         stage('Remove Unused docker image') {
-            echo 'teralex_Removing Unused docker image....'
             steps{
+                echo 'teralex_Removing Unused docker image....'
                 sh "docker rmi ${DockerHub_regestry}:web_py-2.${BUILD_NUMBER}"
             }
         } 
