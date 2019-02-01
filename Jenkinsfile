@@ -29,11 +29,8 @@ pipeline {
         stage('Publish') {
             steps {
                 echo 'teralex_Publishing....'
-
                 script {
-
                     docker.withRegistry( '', DockerHub_Credential ) {
-
                        myImage.push("web_py-2.${BUILD_NUMBER}")
                       // myImage.push("latest")
                     }
@@ -42,6 +39,7 @@ pipeline {
         }
 
         stage('Remove Unused docker image') {
+            echo 'teralex_Removing Unused docker image....'
             steps{
                 sh "docker rmi ${DockerHub_regestry}:web_py-2.${BUILD_NUMBER}"
             }
