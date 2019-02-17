@@ -30,7 +30,8 @@ pipeline {
             steps {
                 echo 'teralex_Publishing....'
                 script {
-                    docker.withRegistry( '', DockerHub_Credential_id ) {
+#                    docker.withRegistry( '', DockerHub_Credential_id ) {
+                    withDockerRegistry(credentialsId: 'dockerhub') {
                        myImage.push("web_py-2.${BUILD_NUMBER}")
                        myImage.push("latest")
                     }
